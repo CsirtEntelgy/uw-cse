@@ -1,0 +1,19 @@
+Sum : 83.213405
+Average : 1.155741736111111
+Standard Diviation : 0.23016467234321805
+saving to bb-reno-q20/q.png
+
+Sum : 80.357433
+Average : 1.1160754583333334
+Standard Diviation : 0.11691075513386476
+saving to bb-reno-q100/q.png
+
+Sum : 78.795375
+Average : 1.0943802083333334
+Standard Diviation : 0.09899143877712321
+saving to bb-bbr-q20/q.png
+
+Sum : 78.999169
+Average : 1.0972106805555555
+Standard Diviation : 0.08517684700437254
+saving to bb-bbr-q100/q.png

@@ -1,0 +1,39 @@
+CSE 331 Homework 3.  Answers to Written questions.
+Edit this file to supply your answers.
+
+Name:  Young Bin Cho (Josh Cho)
+
+Problem 6.
+
+(a) Because the exception is to be thrown when the given integer is
+	less than zero, but the if-expression was less than or equal to zero.
+	Zero isn't negative but the program was throwing an exception, saying it is.
+
+(b) This error is about testing 0 and 1. Since there was an error for passing zero,
+	this error happened. After fixing (a), it was gone. 
+
+(c) The recursive call and the else-if statement was wrong. The else-if statement
+	should have been less than or equal to 1, which sets the base case for the
+	recursion and is the first two number of Fibonacci numbers. The recursive call
+	should have a "+" between, not a "-". It is wrong because it is against the
+	definition of Fibonacci numbers. After fixing these the error was gone.
+
+
+Problem 7. 
+
+(a) The constructor should be assigning volume to this.volume.
+	Also the getVolume method always returned 0, not the actual volume.
+	
+(b) I believe the second approach is better (I did it that way) because it doesn't
+	calculate every time getVolume is called, saving runtime and memory.
+	
+(c) First way to implement getBallsFromSmallest would be moving all the ball elements
+	into an array first using the iterator. Then using the getVolume and the sorting
+	methods, we can get a sorted array. Moving that array back into a ballContainer
+	object and returning it's iterator. Second would be calling a new iterator over
+	and over until we completed our sorted set. In each call to the iterator we would
+	find the smallest element and remove it from the original ballContainer whilst
+	adding it to the temp ballContainer. Repeat this process until the original
+	container is empty, return the iterator of the temp container.
+	I chose the second method although it may cause much more runtime require much
+	more memory, it is more intuitive and easy to follow. 

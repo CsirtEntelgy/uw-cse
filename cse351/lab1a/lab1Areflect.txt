@@ -1,0 +1,32 @@
+*********************
+* Lab 1a Reflection *
+*********************
+Name: Young Bin Cho
+ID: 1773497
+
+
+-----------------------------------------------------------
+1) Use/Benefit:
+Pointer Arithmetics is used to access/manipulate memory using pointers.
+This helps the programmer to know "what" is stored "where".
+It's a powerful (but dangerous) tool as we can directly access and change memory.
+Also a tool that is unavailable in JAVA due to abstraction.
+
+-----------------------------------------------------------
+2) Steps:
+Because we use pointers.
+We would first assign a pointer to that address,
+then we need to cast each to a pointer of type char.
+Casting it to char pointer gives the address as char.
+The difference (or space) would be the difference in bytes (of size).
+
+-----------------------------------------------------------
+3) Explain:
+If both parameters were ints,
+the functions would've swapped the location of given integers.
+For example, if we were given 3 and 5 as parameter and the swap was complete,
+int x = 3 -> the actual value stored in x would be 5
+int y = 5 -> the actual value stored in y would be 3.
+This is VERY dangerous as it can damage the entire memory.
+
+-----------------------------------------------------------

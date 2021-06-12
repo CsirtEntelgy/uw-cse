@@ -1,0 +1,34 @@
+********************
+* Lab 4 Reflection *
+********************
+Name: Young Bin Cho
+ID: joshua97 (1773497)
+
+
+-----------------------------------------------------------
+1) Instructions in the nested loops that access memory
+   lab0.d:    <#> 22
+   lab0opt.d: <#> 11
+-----------------------------------------------------------
+2) Where are the loop variables stored in lab0.d:
+   i: -0x14(%rbp)
+   j: -0x18(%rbp)
+   k: -0x1c(%rbp)
+-----------------------------------------------------------
+3) Corresponding values in lab0opt.d:
+   %edx: %edx^%edx
+   %ecx: (%rdi,%rdx,1)
+-----------------------------------------------------------
+4) Execution time
+
+   Pro: Execution time is like the "simplified outcome" of the function.
+        Omitting the details about memory consumption and other trivialities,
+        execution time measures the efficiency as a whole.
+   
+   Con: Can't examine which part was optimized and which weren't.
+        For example, memory consumption could be bad but other parts such as
+        register usage and use of recursion and forkjoin could have reduced the runtime.
+        So using execution time alone isn't a good indicator to which parts of the code
+        were efficient.
+   
+-----------------------------------------------------------

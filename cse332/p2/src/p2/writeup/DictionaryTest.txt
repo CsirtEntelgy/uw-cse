@@ -1,0 +1,4 @@
+WordSuggestor with BST took 114353438 long.
+WordSuggestor with AVLTree took 71872541 long.
+WordSuggestor with HashTable took 65218034 long.
+WordSuggestor with TrieMap took 886480338 long.

@@ -1,0 +1,13 @@
+goodHashCHT 				 badHashCHT
+9693				1568
+goodHashCHT 				 badHashCHT
+104632				142551
+goodHashCHT 				 badHashCHT
+1884381				2776465
+goodHashCHT 				 badHashCHT
+4099623				84367790
+goodHashCHT 				 badHashCHT
+43138202				6002977177
+goodHashCHT 				 badHashCHT
+2081893390				647447514089
+goodHashCHT 				 badHashCHT

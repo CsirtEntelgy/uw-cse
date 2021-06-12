@@ -1,0 +1,46 @@
+Name: Young Bin Cho (Josh Cho)
+UWNetID: joshua97
+
+Name: Elena Spasova
+UWNetID: elenaspa
+
+Name: Hemil Gajjar
+UWNetID: hemil
+
+Instructions to reproduce the results:
+  For TCP Reno : ~$ sudo ./run.sh 
+  For TCP BBR : ~$ sudo ./run_bbr.sh
+  
+  
+Answers to the questions:
+
+Part 2
+  1. 
+	q=20 : Average=1.155741736111111 / StandardDiviation=0.23016467234321805
+	q=100 : Average=1.1160754583333334 / StandardDiviation=0.11691075513386476
+  2.
+	Because the buffer must be filled before it's content is shipped out.
+	For passing large data with multiple packets (like a website),
+	the delay between filling the buffer makes large buffer faster.
+  3. 
+	7737 / 0.134 seconds
+  4. 
+	For RTT, the buffer shorter buffer size is better.
+	Like said above, when a buffer must be filled before shipped out,
+	a packet sits longer inside a longer queue.
+  5. 
+	1) remove bloated buffers (search and destroy)
+	2) don't allow demands over bandwidth at all
+  
+Part 3
+  1. 
+	q=20 : Average=1.0943802083333334 / StandardDiviation=0.09899143877712321 
+	q=100 : Average=1.0972106805555555 / StandardDiviation=0.08517684700437254
+  2. 
+	Shorter queue gives better time, different from Reno
+  3. 
+	Queue size is much smaller in BBR, for both 20 and 100 buffer size.
+	This might be because BBR doesn't run based off loss-based determination.
+  4.
+	We have a partial solution for it, but the only solution is to limit bufferbloat strictly based on bandwidth.
+	But a buffer still can be bloated even when congestion isn't loss-based.

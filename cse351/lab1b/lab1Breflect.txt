@@ -1,0 +1,24 @@
+*********************
+* Lab 1b Reflection *
+*********************
+Name: Young Bin Cho
+ID: 1773497
+
+
+-----------------------------------------------------------
+1) Answer in hex: 0xA0 (0b0000000010100000)
+-----------------------------------------------------------
+2) Answer in decimal: 65184 (0b1111111010100000)
+-----------------------------------------------------------
+3) Explain:
+
+Yes there is a difference.
+
+Depending on the type of y, 0xFFFFFFFF can be interpreted differently.
+
+If y is unsigned, 0xFFFFFFFF would be the biggest representable number (2^32 - 1 in decimal).
+If y is signed, 0xFFFFFFFF would be interpreted as -1.
+
+For y = -1 and y = 0xFFFFFFFF to be treated equally, 
+y must be declared signed integer (or just int) explicitly.
+-----------------------------------------------------------

@@ -1,0 +1,85 @@
+CSE 331 Homework 4.  Answers to Written questions.
+Edit this file to supply your answers.
+
+Name:  Young Bin Cho
+
+Problem 0.
+
+(a) r = p * q:
+	Set r as 0
+		for each term, t_p, in p:
+			for each term, t_q in q:
+				set r_i as 0
+				add t_p multiplied with t_q to r_i
+		Add r_1 ... r_p using polynomial addition
+
+(b) r = p/q:
+	Set p_1 as first term of p
+	Set q_1 as first term of q
+	Set r as 0
+	while p_1 has greater or equal degree than q_1:
+		Set r_temp as p_1 divided by q_1
+		Add r_temp to r using polynomial addition
+		Polynomial subtract (polynomial multiplied r_temp and q) from p
+		Set p_1 as the first term of p
+
+(c) p_pre = x^3 + x -1
+	q = x + 1
+	p_1 = x^3
+	q_1 = x
+	r = 0
+	while degree p_1 >= degree q_1
+		Iteration 1:
+			r_temp = p_1/q_1 = x^2
+			r = x^2
+			p = (x^3 + x - 1) - (x+1)*(x^2) = -x^2 + x - 1
+			p_1 = -x^2
+		Iteration 2:
+			r_temp = p_1/q_1 = -x
+			r = x^2 + (-x)
+			p = (-x^2+x-1) - (x+1)*(-x) = 2x - 1
+			p_1 = 2x
+		Iteration 3:
+			r_temp = p_1/q_1 = 2
+			r = x^2 - x + 2
+			p = (2x - 1) - (x+1)*(2) = -3
+			p_1 = -3
+	
+	r = x^2 - x + 2
+	reminder is p
+
+Problem 1.
+
+(a) NaN would have to change since denom can be 0 and (1,0) becomes a valid RatNum
+	isNan should change with the same reason as above
+	Basically any method regarding denom == 0 as an invalid (or Not-a-number) should be changed.
+	The complexity will obviously increase since we are not informed from the beginning that denom being 0
+	is an invalid input.
+
+(b) First, the immutable property of RatNum class would be violated. If "this" is returned, the user can modify the
+	instance variables (obviously because it isn't final and the whole "this" is returned to the user).
+	All the required properties of the instance variables cannot be held since anyone can modify them.
+	Making all methods that requires some property of instance variables to be true invalid.
+
+(c) CheckRep checks if the instance variables (numer and denom) are valid. So checkRep only has to happen when numer and
+	denom are changed (since they are immutable), and the only place in the whole code that numer and denom are declared or 
+	modified is the 2 constructors. So you only need to run checkRep then.
+
+Problem 2.
+
+(a) I didn't use any checkRep in my solution, only the ones in the given code were left there.
+	This is because non of my methods changed the instance variables.
+
+(b) The constructor has to change to match the new invariant. The add, subtract, multiply, and divide method must change
+	since they are written under the assumption of zero exponents. This means much more coding and more complexity.
+
+(c) The constructors and the add/subtract/multiply/divide methods must change accordingly. We just can't use this.coeff.add
+	or any other arithmetic operations without checking. I personally prefer neither the solutions. I think defining a zero
+	RatTerm would be the best.
+
+Problem 5.
+
+x^2-1
+2*x^3+2*x+2
+x^3-1 
+x+1

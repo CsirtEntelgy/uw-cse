@@ -1,0 +1,433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ko">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>package hw4;<a name="line.1"></a>
+<span class="sourceLineNo">002</span><a name="line.2"></a>
+<span class="sourceLineNo">003</span>/** &lt;b&gt;RatNum&lt;/b&gt; represents an &lt;b&gt;immutable&lt;/b&gt; rational number.<a name="line.3"></a>
+<span class="sourceLineNo">004</span>    It includes all of the elements in the set of rationals, as well<a name="line.4"></a>
+<span class="sourceLineNo">005</span>    as the special "NaN" (not-a-number) element that results from<a name="line.5"></a>
+<span class="sourceLineNo">006</span>    division by zero.<a name="line.6"></a>
+<span class="sourceLineNo">007</span>    &lt;p&gt;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>    The "NaN" element is special in many ways.  Any arithmetic<a name="line.8"></a>
+<span class="sourceLineNo">009</span>    operation (such as addition) involving "NaN" will return "NaN".<a name="line.9"></a>
+<span class="sourceLineNo">010</span>    With respect to comparison operations, such as less-than, "NaN" is<a name="line.10"></a>
+<span class="sourceLineNo">011</span>    considered equal to itself, and larger than all other rationals.<a name="line.11"></a>
+<span class="sourceLineNo">012</span>    &lt;p&gt;<a name="line.12"></a>
+<span class="sourceLineNo">013</span>    Examples of RatNums include "-1/13", "53/7", "4", "NaN", and "0".<a name="line.13"></a>
+<span class="sourceLineNo">014</span> */<a name="line.14"></a>
+<span class="sourceLineNo">015</span><a name="line.15"></a>
+<span class="sourceLineNo">016</span>// ("immutable" is a common term for which "Effective Java" (p. 63)<a name="line.16"></a>
+<span class="sourceLineNo">017</span>// provides the following definition: "An immutatable class is simply<a name="line.17"></a>
+<span class="sourceLineNo">018</span>// a class whose instances cannot be modified.  All of the information<a name="line.18"></a>
+<span class="sourceLineNo">019</span>// contained in each instance is provided when it is created and is<a name="line.19"></a>
+<span class="sourceLineNo">020</span>// fixed for the lifetime of the object.")<a name="line.20"></a>
+<span class="sourceLineNo">021</span>public final class RatNum extends Number implements Comparable&lt;RatNum&gt; {<a name="line.21"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
+<span class="sourceLineNo">023</span>  private final int numer;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>  private final int denom;<a name="line.24"></a>
+<span class="sourceLineNo">025</span><a name="line.25"></a>
+<span class="sourceLineNo">026</span>  // Abstraction Function:<a name="line.26"></a>
+<span class="sourceLineNo">027</span>  //   A RatNum r is NaN if r.denom = 0, (r.numer / r.denom) otherwise.<a name="line.27"></a>
+<span class="sourceLineNo">028</span>  // (An abstraction function explains what the state of the fields in a<a name="line.28"></a>
+<span class="sourceLineNo">029</span>  // RatNum represents.  In this case, a rational number can be<a name="line.29"></a>
+<span class="sourceLineNo">030</span>  // understood as the result of dividing two integers, or not-a-number<a name="line.30"></a>
+<span class="sourceLineNo">031</span>  // if we would be dividing by zero.)<a name="line.31"></a>
+<span class="sourceLineNo">032</span><a name="line.32"></a>
+<span class="sourceLineNo">033</span>  // Representation invariant for every RatNum r:<a name="line.33"></a>
+<span class="sourceLineNo">034</span>  //   (r.denom &gt;= 0) &amp;&amp;<a name="line.34"></a>
+<span class="sourceLineNo">035</span>  //   (r.denom &gt; 0 ==&gt; there does not exist integer i &gt; 1 such that<a name="line.35"></a>
+<span class="sourceLineNo">036</span>  //                    r.numer mod i = 0 and r.denom mod i = 0;)<a name="line.36"></a>
+<span class="sourceLineNo">037</span>  //   In other words,<a name="line.37"></a>
+<span class="sourceLineNo">038</span>  //     * r.denom is always non-negative.<a name="line.38"></a>
+<span class="sourceLineNo">039</span>  //     * r.numer/r.denom is in reduced form (assuming r.denom is not zero).<a name="line.39"></a>
+<span class="sourceLineNo">040</span>  // (A representation invariant tells us something that is true for all<a name="line.40"></a>
+<span class="sourceLineNo">041</span>  // instances of a RatNum)<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>  /** A constant holding a Not-a-Number (NaN) value of type RatNum */<a name="line.43"></a>
+<span class="sourceLineNo">044</span>  public static final RatNum NaN = new RatNum(1, 0);<a name="line.44"></a>
+<span class="sourceLineNo">045</span><a name="line.45"></a>
+<span class="sourceLineNo">046</span>  /** A constant holding a zero value of type RatNum */<a name="line.46"></a>
+<span class="sourceLineNo">047</span>  public static final RatNum ZERO = new RatNum(0);<a name="line.47"></a>
+<span class="sourceLineNo">048</span><a name="line.48"></a>
+<span class="sourceLineNo">049</span>  /** @param n The value of the new RatNum.<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        @effects Constructs a new RatNum = n.<a name="line.50"></a>
+<span class="sourceLineNo">051</span>   */<a name="line.51"></a>
+<span class="sourceLineNo">052</span>  public RatNum(int n) {<a name="line.52"></a>
+<span class="sourceLineNo">053</span>    numer = n;<a name="line.53"></a>
+<span class="sourceLineNo">054</span>    denom = 1;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    checkRep();<a name="line.55"></a>
+<span class="sourceLineNo">056</span>  }<a name="line.56"></a>
+<span class="sourceLineNo">057</span><a name="line.57"></a>
+<span class="sourceLineNo">058</span>  /** @param n The numerator of the new RatNum.<a name="line.58"></a>
+<span class="sourceLineNo">059</span>        @param d The denominator of the new RatNum.<a name="line.59"></a>
+<span class="sourceLineNo">060</span>        @effects If d = 0, constructs a new RatNum = NaN.  Else<a name="line.60"></a>
+<span class="sourceLineNo">061</span>         constructs a new RatNum = (n / d).<a name="line.61"></a>
+<span class="sourceLineNo">062</span>   */<a name="line.62"></a>
+<span class="sourceLineNo">063</span>  public RatNum(int n, int d) {<a name="line.63"></a>
+<span class="sourceLineNo">064</span>    // special case for zero denominator; gcd(n,d) requires d != 0<a name="line.64"></a>
+<span class="sourceLineNo">065</span>    if (d == 0) {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>      numer = n;<a name="line.66"></a>
+<span class="sourceLineNo">067</span>      denom = 0;<a name="line.67"></a>
+<span class="sourceLineNo">068</span><a name="line.68"></a>
+<span class="sourceLineNo">069</span>    } else {<a name="line.69"></a>
+<span class="sourceLineNo">070</span><a name="line.70"></a>
+<span class="sourceLineNo">071</span>      // reduce ratio to lowest terms<a name="line.71"></a>
+<span class="sourceLineNo">072</span>      int g = gcd(n,d);<a name="line.72"></a>
+<span class="sourceLineNo">073</span>      n = n / g;<a name="line.73"></a>
+<span class="sourceLineNo">074</span>      d = d / g;<a name="line.74"></a>
+<span class="sourceLineNo">075</span><a name="line.75"></a>
+<span class="sourceLineNo">076</span>      if (d &lt; 0) {<a name="line.76"></a>
+<span class="sourceLineNo">077</span>        numer = -n;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>        denom = -d;<a name="line.78"></a>
+<span class="sourceLineNo">079</span>      } else {<a name="line.79"></a>
+<span class="sourceLineNo">080</span>        numer = n;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        denom = d;<a name="line.81"></a>
+<span class="sourceLineNo">082</span>      }<a name="line.82"></a>
+<span class="sourceLineNo">083</span>    }<a name="line.83"></a>
+<span class="sourceLineNo">084</span>    checkRep();<a name="line.84"></a>
+<span class="sourceLineNo">085</span>  }<a name="line.85"></a>
+<span class="sourceLineNo">086</span><a name="line.86"></a>
+<span class="sourceLineNo">087</span>  /**<a name="line.87"></a>
+<span class="sourceLineNo">088</span>   * Checks that the representation invariant holds (if any).<a name="line.88"></a>
+<span class="sourceLineNo">089</span>   **/<a name="line.89"></a>
+<span class="sourceLineNo">090</span>  private void checkRep() {<a name="line.90"></a>
+<span class="sourceLineNo">091</span>    assert (denom &gt;= 0) : "Denominator of a RatNum cannot be less than zero";<a name="line.91"></a>
+<span class="sourceLineNo">092</span><a name="line.92"></a>
+<span class="sourceLineNo">093</span>    if (denom &gt; 0) {<a name="line.93"></a>
+<span class="sourceLineNo">094</span>      int thisGcd = gcd(numer, denom);<a name="line.94"></a>
+<span class="sourceLineNo">095</span>      assert (thisGcd == 1 || thisGcd == -1) : "RatNum not in lowest form";<a name="line.95"></a>
+<span class="sourceLineNo">096</span>    }<a name="line.96"></a>
+<span class="sourceLineNo">097</span>  }<a name="line.97"></a>
+<span class="sourceLineNo">098</span><a name="line.98"></a>
+<span class="sourceLineNo">099</span>  /** Returns true if this is NaN<a name="line.99"></a>
+<span class="sourceLineNo">100</span>        @return true iff this is NaN (not-a-number)<a name="line.100"></a>
+<span class="sourceLineNo">101</span>   */<a name="line.101"></a>
+<span class="sourceLineNo">102</span>  public boolean isNaN() {<a name="line.102"></a>
+<span class="sourceLineNo">103</span>    return (denom == 0);<a name="line.103"></a>
+<span class="sourceLineNo">104</span>  }<a name="line.104"></a>
+<span class="sourceLineNo">105</span><a name="line.105"></a>
+<span class="sourceLineNo">106</span>  /** Returns true if this is negative.<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        @return true iff this &lt; 0. */<a name="line.107"></a>
+<span class="sourceLineNo">108</span>  public boolean isNegative() {<a name="line.108"></a>
+<span class="sourceLineNo">109</span>    return (compareTo(ZERO) &lt; 0);<a name="line.109"></a>
+<span class="sourceLineNo">110</span>  }<a name="line.110"></a>
+<span class="sourceLineNo">111</span><a name="line.111"></a>
+<span class="sourceLineNo">112</span>  /** Returns true if this is positive.<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        @return true iff this &gt; 0. */<a name="line.113"></a>
+<span class="sourceLineNo">114</span>  public boolean isPositive() {<a name="line.114"></a>
+<span class="sourceLineNo">115</span>    return (compareTo(ZERO) &gt; 0);<a name="line.115"></a>
+<span class="sourceLineNo">116</span>  }<a name="line.116"></a>
+<span class="sourceLineNo">117</span><a name="line.117"></a>
+<span class="sourceLineNo">118</span>  /** Compares two RatNums.<a name="line.118"></a>
+<span class="sourceLineNo">119</span>        @param rn The RatNum to be compared.<a name="line.119"></a>
+<span class="sourceLineNo">120</span>        @requires rn != null<a name="line.120"></a>
+<span class="sourceLineNo">121</span>        @return a negative number if this &lt; rn,<a name="line.121"></a>
+<span class="sourceLineNo">122</span>        0 if this = rn,<a name="line.122"></a>
+<span class="sourceLineNo">123</span>        a positive number if this &gt; rn.<a name="line.123"></a>
+<span class="sourceLineNo">124</span>   */<a name="line.124"></a>
+<span class="sourceLineNo">125</span>  @Override<a name="line.125"></a>
+<span class="sourceLineNo">126</span>  public int compareTo(RatNum rn) {<a name="line.126"></a>
+<span class="sourceLineNo">127</span>    if (this.isNaN() &amp;&amp; rn.isNaN()) {<a name="line.127"></a>
+<span class="sourceLineNo">128</span>      return 0;<a name="line.128"></a>
+<span class="sourceLineNo">129</span>    } else if (this.isNaN()) {<a name="line.129"></a>
+<span class="sourceLineNo">130</span>      return 1;<a name="line.130"></a>
+<span class="sourceLineNo">131</span>    } else if (rn.isNaN()) {<a name="line.131"></a>
+<span class="sourceLineNo">132</span>      return -1;<a name="line.132"></a>
+<span class="sourceLineNo">133</span>    } else {<a name="line.133"></a>
+<span class="sourceLineNo">134</span>      RatNum diff = this.sub(rn);<a name="line.134"></a>
+<span class="sourceLineNo">135</span>      return diff.numer;<a name="line.135"></a>
+<span class="sourceLineNo">136</span>    }<a name="line.136"></a>
+<span class="sourceLineNo">137</span>  }<a name="line.137"></a>
+<span class="sourceLineNo">138</span><a name="line.138"></a>
+<span class="sourceLineNo">139</span>  /** Approximates the value of this rational.<a name="line.139"></a>
+<span class="sourceLineNo">140</span>        @return a double approximation for this.  Note that "NaN" is<a name="line.140"></a>
+<span class="sourceLineNo">141</span>        mapped to {@link Double#NaN}, and the {@link Double#NaN} value<a name="line.141"></a>
+<span class="sourceLineNo">142</span>        is treated in a special manner by several arithmetic operations,<a name="line.142"></a>
+<span class="sourceLineNo">143</span>        such as the comparison and equality operators.  See the<a name="line.143"></a>
+<span class="sourceLineNo">144</span>        &lt;a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.2.3"&gt;<a name="line.144"></a>
+<span class="sourceLineNo">145</span>        Java Language Specification, section 4.2.3&lt;/a&gt;, for more details.<a name="line.145"></a>
+<span class="sourceLineNo">146</span>   */<a name="line.146"></a>
+<span class="sourceLineNo">147</span>  @Override<a name="line.147"></a>
+<span class="sourceLineNo">148</span>  public double doubleValue() {<a name="line.148"></a>
+<span class="sourceLineNo">149</span>    if (isNaN()) {<a name="line.149"></a>
+<span class="sourceLineNo">150</span>      return Double.NaN;<a name="line.150"></a>
+<span class="sourceLineNo">151</span>    } else {<a name="line.151"></a>
+<span class="sourceLineNo">152</span>      // convert int values to doubles before dividing.<a name="line.152"></a>
+<span class="sourceLineNo">153</span>      return ((double)numer) / ((double)denom);<a name="line.153"></a>
+<span class="sourceLineNo">154</span>    }<a name="line.154"></a>
+<span class="sourceLineNo">155</span>  }<a name="line.155"></a>
+<span class="sourceLineNo">156</span><a name="line.156"></a>
+<span class="sourceLineNo">157</span>  /** Returns an integer approximation for this.  The rational number<a name="line.157"></a>
+<span class="sourceLineNo">158</span>        is rounded to the nearest integer.<a name="line.158"></a>
+<span class="sourceLineNo">159</span>   */<a name="line.159"></a>
+<span class="sourceLineNo">160</span>  @Override<a name="line.160"></a>
+<span class="sourceLineNo">161</span>  public int intValue() {<a name="line.161"></a>
+<span class="sourceLineNo">162</span>    // round to nearest by adding +/- .5 before truncating division.<a name="line.162"></a>
+<span class="sourceLineNo">163</span>    // we expect the implementation to use "round half away from zero".<a name="line.163"></a>
+<span class="sourceLineNo">164</span>    // for more info, see http://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero<a name="line.164"></a>
+<span class="sourceLineNo">165</span><a name="line.165"></a>
+<span class="sourceLineNo">166</span>    // note that even though the result is guaranteed to fit in an<a name="line.166"></a>
+<span class="sourceLineNo">167</span>    // int, we need to use longs for the computation.<a name="line.167"></a>
+<span class="sourceLineNo">168</span>    if (numer &gt;= 0) {<a name="line.168"></a>
+<span class="sourceLineNo">169</span>      return (int) (((long)numer + (denom/2)) / denom);<a name="line.169"></a>
+<span class="sourceLineNo">170</span>    } else {<a name="line.170"></a>
+<span class="sourceLineNo">171</span>      return (int) (((long)numer - (denom/2)) / denom);<a name="line.171"></a>
+<span class="sourceLineNo">172</span>    }<a name="line.172"></a>
+<span class="sourceLineNo">173</span>  }<a name="line.173"></a>
+<span class="sourceLineNo">174</span><a name="line.174"></a>
+<span class="sourceLineNo">175</span>  /** Returns a float approximation for this.  This method is<a name="line.175"></a>
+<span class="sourceLineNo">176</span>        specified by our superclass, Number.<a name="line.176"></a>
+<span class="sourceLineNo">177</span>   */<a name="line.177"></a>
+<span class="sourceLineNo">178</span>  @Override<a name="line.178"></a>
+<span class="sourceLineNo">179</span>  public float floatValue() {<a name="line.179"></a>
+<span class="sourceLineNo">180</span>    return (float) doubleValue();<a name="line.180"></a>
+<span class="sourceLineNo">181</span>  }<a name="line.181"></a>
+<span class="sourceLineNo">182</span><a name="line.182"></a>
+<span class="sourceLineNo">183</span><a name="line.183"></a>
+<span class="sourceLineNo">184</span>  /** Returns a long approximation for this.  This method is<a name="line.184"></a>
+<span class="sourceLineNo">185</span>        specified by our superclass, Number.  The value returned<a name="line.185"></a>
+<span class="sourceLineNo">186</span>        is rounded to the nearest long.<a name="line.186"></a>
+<span class="sourceLineNo">187</span>   */<a name="line.187"></a>
+<span class="sourceLineNo">188</span>  @Override<a name="line.188"></a>
+<span class="sourceLineNo">189</span>  public long longValue() {<a name="line.189"></a>
+<span class="sourceLineNo">190</span>    return intValue();<a name="line.190"></a>
+<span class="sourceLineNo">191</span>  }<a name="line.191"></a>
+<span class="sourceLineNo">192</span><a name="line.192"></a>
+<span class="sourceLineNo">193</span><a name="line.193"></a>
+<span class="sourceLineNo">194</span>  // in the implementation comments for the following methods, &lt;this&gt;<a name="line.194"></a>
+<span class="sourceLineNo">195</span>  // is notated as "a/b" and &lt;arg&gt; likewise as "x/y"<a name="line.195"></a>
+<span class="sourceLineNo">196</span><a name="line.196"></a>
+<span class="sourceLineNo">197</span>  /** Returns the additive inverse of this RatNum.<a name="line.197"></a>
+<span class="sourceLineNo">198</span>        @return a Rational equal to (0 - this).<a name="line.198"></a>
+<span class="sourceLineNo">199</span>   */<a name="line.199"></a>
+<span class="sourceLineNo">200</span>  public RatNum negate() {<a name="line.200"></a>
+<span class="sourceLineNo">201</span>    return new RatNum(- this.numer, this.denom);<a name="line.201"></a>
+<span class="sourceLineNo">202</span>  }<a name="line.202"></a>
+<span class="sourceLineNo">203</span><a name="line.203"></a>
+<span class="sourceLineNo">204</span>  /** Addition operation.<a name="line.204"></a>
+<span class="sourceLineNo">205</span>        @param arg The other value to be added.<a name="line.205"></a>
+<span class="sourceLineNo">206</span>        @requires arg != null<a name="line.206"></a>
+<span class="sourceLineNo">207</span>        @return a RatNum equal to (this + arg).<a name="line.207"></a>
+<span class="sourceLineNo">208</span>        If either argument is NaN, then returns NaN.<a name="line.208"></a>
+<span class="sourceLineNo">209</span>   */<a name="line.209"></a>
+<span class="sourceLineNo">210</span>  public RatNum add(RatNum arg) {<a name="line.210"></a>
+<span class="sourceLineNo">211</span>    // a/b + x/y = ay/by + bx/by = (ay + bx)/by<a name="line.211"></a>
+<span class="sourceLineNo">212</span>    return new RatNum((this.numer*arg.denom) + (arg.numer*this.denom),<a name="line.212"></a>
+<span class="sourceLineNo">213</span>        this.denom*arg.denom);<a name="line.213"></a>
+<span class="sourceLineNo">214</span>  }<a name="line.214"></a>
+<span class="sourceLineNo">215</span><a name="line.215"></a>
+<span class="sourceLineNo">216</span>  /** Subtraction operation.<a name="line.216"></a>
+<span class="sourceLineNo">217</span>        @param arg The value to be subtracted.<a name="line.217"></a>
+<span class="sourceLineNo">218</span>        @requires arg != null<a name="line.218"></a>
+<span class="sourceLineNo">219</span>        @return a RatNum equal to (this - arg).<a name="line.219"></a>
+<span class="sourceLineNo">220</span>        If either argument is NaN, then returns NaN.<a name="line.220"></a>
+<span class="sourceLineNo">221</span>   */<a name="line.221"></a>
+<span class="sourceLineNo">222</span>  public RatNum sub(RatNum arg) {<a name="line.222"></a>
+<span class="sourceLineNo">223</span>    // a/b - x/y = a/b + -x/y<a name="line.223"></a>
+<span class="sourceLineNo">224</span>    return this.add(arg.negate());<a name="line.224"></a>
+<span class="sourceLineNo">225</span>  }<a name="line.225"></a>
+<span class="sourceLineNo">226</span><a name="line.226"></a>
+<span class="sourceLineNo">227</span>  /** Multiplication operation.<a name="line.227"></a>
+<span class="sourceLineNo">228</span>        @param arg The other value to be multiplied.<a name="line.228"></a>
+<span class="sourceLineNo">229</span>        @requires arg != null<a name="line.229"></a>
+<span class="sourceLineNo">230</span>        @return a RatNum equal to (this * arg).<a name="line.230"></a>
+<span class="sourceLineNo">231</span>        If either argument is NaN, then returns NaN.<a name="line.231"></a>
+<span class="sourceLineNo">232</span>   */<a name="line.232"></a>
+<span class="sourceLineNo">233</span>  public RatNum mul(RatNum arg) {<a name="line.233"></a>
+<span class="sourceLineNo">234</span>    // (a/b) * (x/y) = ax/by<a name="line.234"></a>
+<span class="sourceLineNo">235</span>    return new RatNum(this.numer*arg.numer,<a name="line.235"></a>
+<span class="sourceLineNo">236</span>        this.denom*arg.denom );<a name="line.236"></a>
+<span class="sourceLineNo">237</span>  }<a name="line.237"></a>
+<span class="sourceLineNo">238</span><a name="line.238"></a>
+<span class="sourceLineNo">239</span>  /** Division operation.<a name="line.239"></a>
+<span class="sourceLineNo">240</span>        @param arg The divisor.<a name="line.240"></a>
+<span class="sourceLineNo">241</span>        @requires arg != null<a name="line.241"></a>
+<span class="sourceLineNo">242</span>        @return a RatNum equal to (this / arg).<a name="line.242"></a>
+<span class="sourceLineNo">243</span>        If arg is zero, or if either argument is NaN, then returns NaN.<a name="line.243"></a>
+<span class="sourceLineNo">244</span>   */<a name="line.244"></a>
+<span class="sourceLineNo">245</span>  public RatNum div(RatNum arg) {<a name="line.245"></a>
+<span class="sourceLineNo">246</span>    // (a/b) / (x/y) = ay/bx<a name="line.246"></a>
+<span class="sourceLineNo">247</span>    if (arg.isNaN()) {<a name="line.247"></a>
+<span class="sourceLineNo">248</span>      return arg;<a name="line.248"></a>
+<span class="sourceLineNo">249</span>    } else {<a name="line.249"></a>
+<span class="sourceLineNo">250</span>      return new RatNum(this.numer*arg.denom,<a name="line.250"></a>
+<span class="sourceLineNo">251</span>          this.denom*arg.numer);<a name="line.251"></a>
+<span class="sourceLineNo">252</span>    }<a name="line.252"></a>
+<span class="sourceLineNo">253</span>  }<a name="line.253"></a>
+<span class="sourceLineNo">254</span><a name="line.254"></a>
+<span class="sourceLineNo">255</span>  /** Returns the greatest common divisor of 'a' and 'b'.<a name="line.255"></a>
+<span class="sourceLineNo">256</span>        @param a, b The numbers for which to find the GCD.<a name="line.256"></a>
+<span class="sourceLineNo">257</span>        @requires b != 0<a name="line.257"></a>
+<span class="sourceLineNo">258</span>        @return d such that a % d = 0 and b % d = 0<a name="line.258"></a>
+<span class="sourceLineNo">259</span>   */<a name="line.259"></a>
+<span class="sourceLineNo">260</span>  private static int gcd(int a, int b) {<a name="line.260"></a>
+<span class="sourceLineNo">261</span>    // Euclid's method<a name="line.261"></a>
+<span class="sourceLineNo">262</span>    if (b == 0) {<a name="line.262"></a>
+<span class="sourceLineNo">263</span>      return 0;<a name="line.263"></a>
+<span class="sourceLineNo">264</span>    }<a name="line.264"></a>
+<span class="sourceLineNo">265</span>    while (b != 0) {<a name="line.265"></a>
+<span class="sourceLineNo">266</span>      int tmp = b;<a name="line.266"></a>
+<span class="sourceLineNo">267</span>      b = a % b;<a name="line.267"></a>
+<span class="sourceLineNo">268</span>      a = tmp;<a name="line.268"></a>
+<span class="sourceLineNo">269</span>    }<a name="line.269"></a>
+<span class="sourceLineNo">270</span>    return a;<a name="line.270"></a>
+<span class="sourceLineNo">271</span>  }<a name="line.271"></a>
+<span class="sourceLineNo">272</span><a name="line.272"></a>
+<span class="sourceLineNo">273</span>  /** Standard hashCode function.<a name="line.273"></a>
+<span class="sourceLineNo">274</span>        @return an int that all objects equal to this will also<a name="line.274"></a>
+<span class="sourceLineNo">275</span>        return.<a name="line.275"></a>
+<span class="sourceLineNo">276</span>   */<a name="line.276"></a>
+<span class="sourceLineNo">277</span>  @Override<a name="line.277"></a>
+<span class="sourceLineNo">278</span>  public int hashCode() {<a name="line.278"></a>
+<span class="sourceLineNo">279</span>    // all instances that are NaN must return the same hashcode;<a name="line.279"></a>
+<span class="sourceLineNo">280</span>    if (this.isNaN()) {<a name="line.280"></a>
+<span class="sourceLineNo">281</span>      return 0;<a name="line.281"></a>
+<span class="sourceLineNo">282</span>    }<a name="line.282"></a>
+<span class="sourceLineNo">283</span>    return (this.numer*2) + (this.denom*3);<a name="line.283"></a>
+<span class="sourceLineNo">284</span>  }<a name="line.284"></a>
+<span class="sourceLineNo">285</span><a name="line.285"></a>
+<span class="sourceLineNo">286</span>  /** Standard equality operation.<a name="line.286"></a>
+<span class="sourceLineNo">287</span>        @param obj The object to be compared for equality.<a name="line.287"></a>
+<span class="sourceLineNo">288</span>        @return true if and only if 'obj' is an instance of a RatNum<a name="line.288"></a>
+<span class="sourceLineNo">289</span>        and 'this' and 'obj' represent the same rational number.  Note<a name="line.289"></a>
+<span class="sourceLineNo">290</span>        that NaN = NaN for RatNums.<a name="line.290"></a>
+<span class="sourceLineNo">291</span>   */<a name="line.291"></a>
+<span class="sourceLineNo">292</span>  @Override<a name="line.292"></a>
+<span class="sourceLineNo">293</span>  public boolean equals(/*@Nullable*/ Object obj) {<a name="line.293"></a>
+<span class="sourceLineNo">294</span>    if (obj instanceof RatNum) {<a name="line.294"></a>
+<span class="sourceLineNo">295</span>      RatNum rn = (RatNum) obj;<a name="line.295"></a>
+<span class="sourceLineNo">296</span><a name="line.296"></a>
+<span class="sourceLineNo">297</span>      // special case: check if both are NaN<a name="line.297"></a>
+<span class="sourceLineNo">298</span>      if (this.isNaN() &amp;&amp; rn.isNaN()) {<a name="line.298"></a>
+<span class="sourceLineNo">299</span>        return true;<a name="line.299"></a>
+<span class="sourceLineNo">300</span>      } else {<a name="line.300"></a>
+<span class="sourceLineNo">301</span>        return (this.numer == rn.numer) &amp;&amp; (this.denom == rn.denom);<a name="line.301"></a>
+<span class="sourceLineNo">302</span>      }<a name="line.302"></a>
+<span class="sourceLineNo">303</span>    } else {<a name="line.303"></a>
+<span class="sourceLineNo">304</span>      return false;<a name="line.304"></a>
+<span class="sourceLineNo">305</span>    }<a name="line.305"></a>
+<span class="sourceLineNo">306</span>  }<a name="line.306"></a>
+<span class="sourceLineNo">307</span><a name="line.307"></a>
+<span class="sourceLineNo">308</span>  /** @return a String representing this, in reduced terms.<a name="line.308"></a>
+<span class="sourceLineNo">309</span>        The returned string will either be "NaN", or it will take on<a name="line.309"></a>
+<span class="sourceLineNo">310</span>        either of the forms "N" or "N/M", where N and M are both<a name="line.310"></a>
+<span class="sourceLineNo">311</span>        integers in decimal notation and M != 0.<a name="line.311"></a>
+<span class="sourceLineNo">312</span>   */<a name="line.312"></a>
+<span class="sourceLineNo">313</span>  @Override<a name="line.313"></a>
+<span class="sourceLineNo">314</span>  public String toString() {<a name="line.314"></a>
+<span class="sourceLineNo">315</span>    // using '+' as String concatenation operator in this method<a name="line.315"></a>
+<span class="sourceLineNo">316</span>    if (isNaN()) {<a name="line.316"></a>
+<span class="sourceLineNo">317</span>      return "NaN";<a name="line.317"></a>
+<span class="sourceLineNo">318</span>    } else if (denom != 1) {<a name="line.318"></a>
+<span class="sourceLineNo">319</span>      return numer + "/" + denom;<a name="line.319"></a>
+<span class="sourceLineNo">320</span>    } else {<a name="line.320"></a>
+<span class="sourceLineNo">321</span>      return Integer.toString(numer);<a name="line.321"></a>
+<span class="sourceLineNo">322</span>    }<a name="line.322"></a>
+<span class="sourceLineNo">323</span>  }<a name="line.323"></a>
+<span class="sourceLineNo">324</span><a name="line.324"></a>
+<span class="sourceLineNo">325</span>  /** Makes a RatNum from a string describing it.<a name="line.325"></a>
+<span class="sourceLineNo">326</span>        @param ratStr A string of the format described in the @requires clause.<a name="line.326"></a>
+<span class="sourceLineNo">327</span>        @requires 'ratStr' is an instance of a string, with no spaces,<a name="line.327"></a>
+<span class="sourceLineNo">328</span>        of the form: &lt;UL&gt;<a name="line.328"></a>
+<span class="sourceLineNo">329</span>        &lt;LI&gt; "NaN"<a name="line.329"></a>
+<span class="sourceLineNo">330</span>        &lt;LI&gt; "N/M", where N and M are both integers in<a name="line.330"></a>
+<span class="sourceLineNo">331</span>        decimal notation, and M != 0, or<a name="line.331"></a>
+<span class="sourceLineNo">332</span>        &lt;LI&gt; "N", where N is an integer in decimal<a name="line.332"></a>
+<span class="sourceLineNo">333</span>        notation.<a name="line.333"></a>
+<span class="sourceLineNo">334</span>        &lt;/UL&gt;<a name="line.334"></a>
+<span class="sourceLineNo">335</span>        @returns NaN if ratStr = "NaN".  Else returns a<a name="line.335"></a>
+<span class="sourceLineNo">336</span>        RatNum r = ( N / M ), letting M be 1 in the case<a name="line.336"></a>
+<span class="sourceLineNo">337</span>        where only "N" is passed in.<a name="line.337"></a>
+<span class="sourceLineNo">338</span>   */<a name="line.338"></a>
+<span class="sourceLineNo">339</span>  public static RatNum valueOf(String ratStr) {<a name="line.339"></a>
+<span class="sourceLineNo">340</span>    int slashLoc = ratStr.indexOf('/');<a name="line.340"></a>
+<span class="sourceLineNo">341</span>    if (ratStr.equals("NaN")) {<a name="line.341"></a>
+<span class="sourceLineNo">342</span>      return new RatNum(1,0);<a name="line.342"></a>
+<span class="sourceLineNo">343</span>    } else if (slashLoc == -1) {<a name="line.343"></a>
+<span class="sourceLineNo">344</span>      // not NaN, and no slash, must be an Integer<a name="line.344"></a>
+<span class="sourceLineNo">345</span>      return new RatNum( Integer.parseInt( ratStr ) );<a name="line.345"></a>
+<span class="sourceLineNo">346</span>    } else {<a name="line.346"></a>
+<span class="sourceLineNo">347</span>      // slash, need to parse the two parts separately<a name="line.347"></a>
+<span class="sourceLineNo">348</span>      int n = Integer.parseInt(ratStr.substring(0, slashLoc));<a name="line.348"></a>
+<span class="sourceLineNo">349</span>      int d = Integer.parseInt(ratStr.substring(slashLoc+1,<a name="line.349"></a>
+<span class="sourceLineNo">350</span>          ratStr.length()));<a name="line.350"></a>
+<span class="sourceLineNo">351</span>      return new RatNum(n, d);<a name="line.351"></a>
+<span class="sourceLineNo">352</span>    }<a name="line.352"></a>
+<span class="sourceLineNo">353</span>  }<a name="line.353"></a>
+<span class="sourceLineNo">354</span><a name="line.354"></a>
+<span class="sourceLineNo">355</span>  /**<a name="line.355"></a>
+<span class="sourceLineNo">356</span>   * Declare a serialization version number. This field is necessary because<a name="line.356"></a>
+<span class="sourceLineNo">357</span>   * our parent class (Number) implements Serializable; see the api docs for<a name="line.357"></a>
+<span class="sourceLineNo">358</span>   * java.lang.Serializable for more details.<a name="line.358"></a>
+<span class="sourceLineNo">359</span>   */<a name="line.359"></a>
+<span class="sourceLineNo">360</span>  private static final long serialVersionUID = -8593953691277016262L;<a name="line.360"></a>
+<span class="sourceLineNo">361</span>}<a name="line.361"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>

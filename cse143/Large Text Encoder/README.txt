@@ -1,0 +1,1 @@
+Encodes a given file of large text using Huffman Tree.

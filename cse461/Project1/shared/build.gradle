@@ -1,0 +1,24 @@
+plugins {
+    // Apply the Java plugin to add support for general Java modules
+    id "java"
+
+    // For eliminating boilerplate
+    id "io.freefair.lombok" version "5.3.0"
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+}
+
+test {
+    useJUnit()
+}

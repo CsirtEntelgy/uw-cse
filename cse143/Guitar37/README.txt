@@ -1,0 +1,1 @@
+Simulates the guitar sounds using the custom-made backend design + driver.

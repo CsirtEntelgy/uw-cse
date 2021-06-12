@@ -1,0 +1,22 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13'
+
+    implementation project(':shared')
+    implementation 'com.google.guava:guava:29.0-jre'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'Server'
+}

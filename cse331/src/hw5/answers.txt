@@ -1,0 +1,106 @@
+CSE 331 Homework 5.  Answers to Written questions.
+Edit this file to supply your answers.
+
+Name:  <replace this with your name>
+
+Problem 1. (Written exercises)
+
+(a) IntQueue1.java
+	Abstraction function is
+		AF(n_k) = a queue of integers, l, such that
+				  l[0] = least-recently-added item n_0
+				  l[k] = most-recently-added item n_k
+	
+	Representation invariant is
+		n_0 ... n_k != null
+	
+	IntQueue2.java
+	Abstraction function is
+		AF(n_k) = a queue of integers, l
+				  l[front] = least-recently-added item n_0
+				  l[front + size - 1] = n_k
+	
+	Representation invariant is
+		l.entriest.length >= size >= 0 && l.length >= front >= 0 
+		
+(b) {a,d,g}
+	{b,h}
+	{c,f}
+	{e}
+
+(c) 1. It seems to be returning the result of sending some integers, x, y, and z, through a function.
+	   Should not expose any representation.
+	2. Seems to be returning the representation filtered by the given boolean, depending on the given
+	   boolean, it could expose the representation.
+	3. Its a private method, should not expose any representation.
+	4. Considering the representation not being a single string and is just returning the string,
+	   this method should not expose any representation.
+	5. It is returning an iterator, meaning possible exposure of the representation since it is
+	   mainly used for modifying a structure.
+	6. Possibly assigning the given list to the private variable held inside the method Deck,
+	   should not expose the representation.
+
+Problem 2.  (Graph interface/operations)
+
+	I used two supporting classes, GraphEdge and GraphNode.
+	These two supporting classes don't have anything special except they implement Comparable and overrides equals.
+	This had to be done because I was using a map as the structure for holding the graph,
+	and methods like contains() or get() and structures like TreeMap required Comparable and override equals.
+	Using these helped break down the code and make it easier to understand. 
+	Below are some method explanations for the Graph.java interface
+	
+	Graph : Constructor is always needed. Since I am making my graph out of edges and nodes,
+								list of GraphEdge seems like a good parameter.
+							
+	addNode : Ability to add a node is critical in making the graph flexible in expansion.
+	addEdge : Same reason as addNode.
+	
+	removeNode : Ability remove a node and all edges connect is critical in making the graph flexible in decreasing
+	removeEdge : Same reason as removeNode
+	removeAllEdge : Since there may be several of same edges, this removes all of it instead of all occurrences
+	
+	removeAllEdgesFromAndTo : Isolates a node by disconnecting all edges reaching out and to the node.
+								Needed for the function removeNode to work properly.
+	
+	getAllNodes : Should be able to access the set of all the nodes being considered for iteration purposes
+	getAllEdges : Same reason as getAllNodes
+	getAllEdgesFrom : Being able to know all edges reaching out from a node is critical in navigating the graph
+	
+	isEmpty : To know if the graph is empty, this is to not work other methods on a empty graph
+	containsNode : To know if a node is in the graph
+	containsEdge : To know if an edge is in the graph
+	isConnected : Need to be able to see if two nodes are directly connected, critical for navigating the graph
+	
+	checkRep : Needed since I need to check if the methods that modify the Graph object violates the invariant
+
+Problem 3.  (Testing strategy)
+	Tested all public methods with a correct input and expected output.
+	For some tests, also tested if the result would be reversed when input is reversed.
+	All exceptions were properly thrown and since I don't know how to assert an exception,
+	I just removed all assertion that threw the correct error at correct times.
+	
+	Testing for GraphNode:
+	Basic stuff, nothing complex enough for explanation to be needed
+	
+	Testing for GraphEdge:
+	Basic stuff, nothing complex enough for explanation to be needed
+
+	Testing for Graph:
+	Constructed a List<GraphEdge> that is to be passed to the constructor (basically holding all edges)
+				a List<GraphEdge> that reaches out from the GraphNode("a") (for testing getAllEdgesFrom)
+				a Set<GraphNode> that holds all relevant GraphNodes (for testing getAllNodes)
+	First, tested constructors and saw if they fail.
+	Tested all contains-methods to see if my Comparable/equals implementations worked.
+	Tested isEmpty and isConnected for the same reason as above.
+	Tested all get-methods to see if it returned the right data and if it was exposing the representation
+	Tested all remove/add methods (manipulating the lists (or sets) that correspond accordingly) by comparing to
+	expected output.
+	
+	All worked fine, no errors.
+	
+Problem 4.  (Representation)
+	My representation is every node paired with all edges reaching out from them.
+	This seemed right because it is simple to trace back and recurse through when finding a path.
+	Although the recursion may be exhaustive and may spend much more runtime than a matrix, 
+	it is straight forward and easy to see. Also the runtime problem is greatly reduced through comparable/equals
+	implementation to lower-level support classes(GraphNode, GraphEdge).
