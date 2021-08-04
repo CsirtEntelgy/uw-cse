@@ -1,0 +1,44 @@
+A) R(A,B,C,D,E) with functional dependencies D → B, CE → A.
+->
+1) D+ = {D, B} (FD)
+2) !D+ = {A, C, D, E} (considering D -> B)
+3) Decomposing {A, C, D, E} ...
+3) CE+ = {C, E, A} (FD)
+4) !CE+ = {C, D, E} (Remainder)
+=>
+R1 = {D, B}
+R2 = {C, E, A}
+R3 = {C, D, E}
+
+B) S(A,B,C,D,E) with functional dependencies A → E, BC → A, DE → B.
+->
+1) A+ = {A, E} (FD)
+2) !A+ = {A, B, C, D} (considering A -> E)
+3) Decomposing {A, B, C, D} ...
+4) BC+ = {A, B, C} (FD)
+5) !BC+ = {B, C, D} (Remainder)
+=>
+S1 = {A, E}
+S2 = {A, B, C}
+S3 = {B, C, D}
+
+C. All subsets of {A,B,C,D} are closed.
+=>
+A -> B
+B -> C
+C -> D
+D -> D
+
+D. The only closed subsets of {A,B,C,D} are {} and {A,B,C,D}.
+=>
+A -> B
+B -> C
+C -> D
+D -> A
+
+E. (5 points) The only closed subsets of {A,B,C,D} are {}, {B,C}, and {A,B,C,D}.
+=>
+B -> C
+C -> B
+A -> BCD
+D -> ABC

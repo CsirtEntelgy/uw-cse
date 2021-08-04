@@ -1,0 +1,15 @@
+Q.
+The DBMS that we use in this assignment is running somewhere in one of Microsoft's data centers. 
+Comment on your experience using this DBMS cloud service. 
+What do you think about the idea of offering a DBMS as a service in a public cloud?
+
+A.
+I think the experience was great.
+I didn't experience any lag (but this could be due to server availability during my worktime).
+
+I don't think a DBMS offered in public cloud could be effective.
+At my current understanding, a public cloud isn't efficient or reliable enough to host a DBMS.
+
+Although it would be exciting if everyone could have access to a DBMS,
+if a DBMS is possible of data losses, crashes, or quick exhaustion of storage spaces,
+I believe that DBMS no longer serves the purpose as a DBMS.
