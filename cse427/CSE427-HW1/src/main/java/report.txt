@@ -1,0 +1,78 @@
+Young Bin Cho (Josh Cho)
+joshua97@uw.edu (1773497)
+
+------------------------------------------------------ 2(b) ------------------------------------------------------
+Write: a one sentence summary of the protein's (known) function.
+Based on that, write whether you expect each protein to be similar to the others or not.
+
+MYOD1_HUMAN : transcription of muscle-specific target genes and plays a role in muscle differentiation
+TAL1_HUMAN  : genesis of hemopoietic malignancies
+MYOD1_MOUSE : promotes transcription of muscle-specific target genes and plays a role in muscle differentiation
+MYOD1_CHICK : transcriptional activator that promotes transcription of muscle-specific target genes and plays a role in muscle differentiation
+MYODA_XENLA : May act as a transcriptional activator that promotes transcription of muscle-specific target genes and plays a role in muscle differentiation
+MYOD1_DANRE	: May act as a transcriptional activator that promotes transcription of muscle-specific target genes and plays a role in muscle differentiation
+Q8IU24_BRABE: DNA-Binding / Cell differentiation
+MYOD_DROME  : May play an important role in the early development of muscle
+LIN32_CAEEL : Essential for the specification of the neuroblast cell fate in the development of peripheral sense organs
+SYFM_HUMAN  : responsible for the charging of tRNA(Phe) with phenylalanine in mitochondrial translation
+
+The prefixes of names tell us a lot.
+MYOD1_HUMAN / MYOD1_MOUSE / MYOD1_CHICK / MYODA_XENLA / MYOD1_DANRE / MYOD_DROME all seem to work something with muscles.
+SYFM_HUMAN / TAL1_HUMAN both have something to do with humans.
+TAL1_HUMAN / LIN32_CAEEL might be related to development&aging.
+Q8IU24_BRABE / SYFM_HUMAN might be related to DNA, because DNA and RNA are closely related.
+
+------------------------------------------------------ 4(c) ------------------------------------------------------
+output from test case 3(1):
+s1 = given1, compared with, s2 = given2
+
+Score of this evaluation's optimal alignment is :
+20
+
+Printing optimal alignment :
+given1: 	0	D-EADLY
+given2: 	1	DGEARLY
+
+Printing score matrix :
+0  0  0  0  0  0  0  0  0  0
+0  6  6  2  2  -2 -2 -4 -3 -1
+0  2  8  4  7  3  -1 -5 -6 -2
+0  -2 4  8  4  11  7  3  -1 -5
+0  6  4  4  10  7  9  5  1  -2
+0  2  2  0  6  9  5  13  9  5
+0  -2 -1 -1 2  5  7  9  20  16
+
+Printing empirical p-value :
+151.0
+
+------------------------------------------------------
+
+10 by 10 upper triangular matrix showing the score you found for the alignment of protein i to protein j:
+
+                MYOD1_HUMAN     TAL1_HUMAN      MYOD1_MOUSE     MYOD1_CHICK     MYODA_XENLA     MYOD1_DANRE     Q8IU24_BRABE       MYOD_DROME       LIN32_CAEEL     SYFM_HUMAN
+MYOD1_HUMAN         1709           131             1500            1020             978             889             425               364               102             45
+TAL1_HUMAN                         1731            113             101              110             87              140               121               150             60
+MYOD1_MOUSE                                        1702            1043             1002            920             437               362               101             43
+MYOD1_CHICK                                                        1594             1147            1093            445               414               107             56
+MYODA_XENLA                                                                         1541            1104            450               393               107             61
+MYOD1_DANRE                                                                                         1479            446               396               100             61
+Q8IU24_BRABE                                                                                                        1215              434               117             43
+MYOD_DROME                                                                                                                            1746              120             86
+LIN32_CAEEL                                                                                                                                             746             67
+SYFM_HUMAN                                                                                                                                                              2420
+
+------------------------------------------------------
+
+two p-values from III(3) / 999 permutations for both
+309.0 / 306.0
+
+------------------------------------------------------
+
+How my thoughts changed after seeing result:
+
+I think I got the basic theme correct, my initial deduction wasn't too off.
+
+But there still were some surprises:
+- mouse and human having very high score (i mean this is understandable
+considering mouse is used for medical testing all the time)
+- SYFM_HUMAN having almost no similarity with any other

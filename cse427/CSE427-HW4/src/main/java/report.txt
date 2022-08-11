@@ -1,0 +1,76 @@
+[Part 1]
+------------------------------------ Begin Report ------------------------------------
+Frames found in offset 0 : 5889
+Frames found in offset 1 : 5929
+Frames found in offset 2 : 5902
+
+Total number of SHORT ORFs : 14503
+Total number of LONG ORFs : 118
+
+Total number of CDS found in GenBank data : 846
+
+Sample conditional probability table for P(x) (rounded to 4 digits below zero) :
+0.2101 | 0.1844 | 0.2026 | 0.3527
+0.3302 | 0.1 | 0.2408 | 0.327
+0.266 | 0.1903 | 0.1334 | 0.6017
+0.406 | 0.1961 | 0.2474 | 0.2562
+
+Sample conditional probability table for Q(x) (rounded to 4 digits below zero) :
+0.394 | 0.2674 | 0.405 | 0.3556
+0.4468 | 0.1353 | 0.4706 | 0.3288
+0.28 | 0.1963 | 0.4091 | 0.3727
+0.4828 | 0.1952 | 0.4888 | 0.3614
+
+Data summary of first 5 SHORT ORFs :
+Start Pos: 2.0 | End Pos: 97.0 | Length: 93.0 | Markov Score: 2.548750870050256 | In GenBank Database: 0.0
+Start Pos: 36.0 | End Pos: 113.0 | Length: 75.0 | Markov Score: 0.5191748005526193 | In GenBank Database: 0.0
+Start Pos: 91.0 | End Pos: 135.0 | Length: 42.0 | Markov Score: 1.5237793069639238 | In GenBank Database: 0.0
+Start Pos: 114.0 | End Pos: 173.0 | Length: 57.0 | Markov Score: 2.3955840106650115 | In GenBank Database: 0.0
+Start Pos: 157.0 | End Pos: 177.0 | Length: 18.0 | Markov Score: 1.8580940002988129 | In GenBank Database: 0.0
+
+Data summary of first 5 LONG ORFs :
+Start Pos: 17619.0 | End Pos: 19232.0 | Length: 1611.0 | Markov Score: 168.4455168947079 | In GenBank Database: 1.0
+Start Pos: 33626.0 | End Pos: 35248.0 | Length: 1620.0 | Markov Score: 207.7751915182364 | In GenBank Database: 1.0
+Start Pos: 42725.0 | End Pos: 45112.0 | Length: 2385.0 | Markov Score: 258.94024651304017 | In GenBank Database: 1.0
+Start Pos: 74592.0 | End Pos: 76013.0 | Length: 1419.0 | Markov Score: 137.75680895809592 | In GenBank Database: 1.0
+Start Pos: 76820.0 | End Pos: 78484.0 | Length: 1662.0 | Markov Score: 201.89782829874503 | In GenBank Database: 1.0
+
+Maximum length threshold for 80%+ true positives :
+366 | True Positives: 716.0 | False Positives: 174.0
+
+Maximum MM-score threshold for 80%+ true positives :
+11.199999999999976 | True Positives: 804.0 | False Positives: 200.0
+
+Short ORF average per-nucleotide contribution to MM-score :
+-0.05986314211723661
+
+Determining predicted gene using distance from line :
+True Positives: 1.0 | False Positives: 14076.0 | True Positive Rate: 0.0071037863181075515%
+
+Maximum distance from line threshold for 80%+ true positives :
+-77.0 | True Positives: 0.0 | False Positives: 0.0
+------------------------------------ End Report ------------------------------------
+
+
+[Part 2]
+For the ROC graph, please see "ROC.jpeg" and "ROC_Zoomed.jpeg" inside "/src/main/resources"
+
+AUC for (a) : sorry :(
+AUC for (b) : sorry :(
+
+
+[Part 3]
+My recommended length threshold : 366
+True positives : 716 / False positives : 174
+
+
+[Part 4]
+My recommended MM-score threshold : 11.2
+True positives : 804 / False positives : 200
+
+
+[Part 5]
+Average per-nucleotide contribution to their Markov score : -0.05986
+The data seemed weird, and I ran out of time to complete part 5 (I think I messed up the math somewhere).
+But from what I can tell up to this point is using short ORFs to determine anything seems very untrustworthy.
+Maybe making the line using long ORFs could fair better.

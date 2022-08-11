@@ -1,0 +1,332 @@
+--------------- < Iteration 1 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.25), (C = 0.25), (G = 0.25), (T = 0.25)
+State 2 : (A = 0.2), (C = 0.3), (G = 0.3), (T = 0.2)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.9999
+State 1 -> State 2 : 0.0001
+State 2 -> State 1 : 0.01
+State 2 -> State 2 : 0.99
+
+Log probability of overall Viterbi path : -2308117.250552
+
+Total number of hits found : 2
+
+> Hit #1 :
+Starting Position: 154651 | Ending Position: 159579 | Length: 4929
+> Hit #2 :
+Starting Position: 638464 | Ending Position: 643447 | Length: 4984
+--------------- < Iteration 1 End > ---------------
+
+--------------- < Iteration 2 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.345354), (C = 0.154404), (G = 0.157978), (T = 0.342267)
+State 2 : (A = 0.186624), (C = 0.314638), (G = 0.313831), (T = 0.184909)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999999
+State 1 -> State 2 : 0.000002
+State 2 -> State 1 : 0.000202
+State 2 -> State 2 : 0.999799
+
+Log probability of overall Viterbi path : -2188058.068297
+
+Total number of hits found : 23
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+> Hit #5 :
+Starting Position: 154610 | Ending Position: 159591 | Length: 4982
+--------------- < Iteration 2 End > ---------------
+
+--------------- < Iteration 3 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.345744), (C = 0.154034), (G = 0.157589), (T = 0.342636)
+State 2 : (A = 0.187625), (C = 0.310811), (G = 0.313585), (T = 0.187981)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999987
+State 1 -> State 2 : 0.000014
+State 2 -> State 1 : 0.001636
+State 2 -> State 2 : 0.998365
+
+Log probability of overall Viterbi path : -2187966.087891
+
+Total number of hits found : 34
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 3 End > ---------------
+
+--------------- < Iteration 4 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.345819), (C = 0.153956), (G = 0.157514), (T = 0.342713)
+State 2 : (A = 0.18494), (C = 0.313828), (G = 0.316363), (T = 0.184871)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.99998
+State 1 -> State 2 : 0.000021
+State 2 -> State 1 : 0.00233
+State 2 -> State 2 : 0.997671
+
+Log probability of overall Viterbi path : -2187960.6111
+
+Total number of hits found : 35
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 4 End > ---------------
+
+--------------- < Iteration 5 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.345824), (C = 0.153952), (G = 0.157503), (T = 0.342723)
+State 2 : (A = 0.185213), (C = 0.313459), (G = 0.31673), (T = 0.1846)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002386
+State 2 -> State 2 : 0.997615
+
+Log probability of overall Viterbi path : -2187960.573582
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 5 End > ---------------
+
+--------------- < Iteration 6 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.34583), (C = 0.153954), (G = 0.157491), (T = 0.342728)
+State 2 : (A = 0.184886), (C = 0.312972), (G = 0.317802), (T = 0.184342)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002449
+State 2 -> State 2 : 0.997552
+
+Log probability of overall Viterbi path : -2187960.506865
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 6 End > ---------------
+
+--------------- < Iteration 7 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.34583), (C = 0.153954), (G = 0.157491), (T = 0.342728)
+State 2 : (A = 0.184886), (C = 0.312972), (G = 0.317802), (T = 0.184342)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002449
+State 2 -> State 2 : 0.997552
+
+Log probability of overall Viterbi path : -2187960.506865
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 7 End > ---------------
+
+--------------- < Iteration 8 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.34583), (C = 0.153954), (G = 0.157491), (T = 0.342728)
+State 2 : (A = 0.184886), (C = 0.312972), (G = 0.317802), (T = 0.184342)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002449
+State 2 -> State 2 : 0.997552
+
+Log probability of overall Viterbi path : -2187960.506865
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 8 End > ---------------
+
+--------------- < Iteration 9 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.34583), (C = 0.153954), (G = 0.157491), (T = 0.342728)
+State 2 : (A = 0.184886), (C = 0.312972), (G = 0.317802), (T = 0.184342)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002449
+State 2 -> State 2 : 0.997552
+
+Log probability of overall Viterbi path : -2187960.506865
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75
+--------------- < Iteration 9 End > ---------------
+
+--------------- < Iteration 10 Start > ---------------
+Emission Parameters Used :
+State 1 : (A = 0.34583), (C = 0.153954), (G = 0.157491), (T = 0.342728)
+State 2 : (A = 0.184886), (C = 0.312972), (G = 0.317802), (T = 0.184342)
+
+Transition Parameters Used :
+State 1 -> State 1 : 0.999979
+State 1 -> State 2 : 0.000022
+State 2 -> State 1 : 0.002449
+State 2 -> State 2 : 0.997552
+
+Log probability of overall Viterbi path : -2187960.506865
+
+Total number of hits found : 36
+
+> Hit #1 :
+Starting Position: 97326 | Ending Position: 97541 | Length: 216      [Actual pos:(97425,97537), NOT hit]
+> Hit #2 :
+Starting Position: 97627 | Ending Position: 97823 | Length: 197      [Actual pos:(97629,97716), NOT hit]
+> Hit #3 :
+Starting Position: 111764 | Ending Position: 111856 | Length: 93     [Actual pos:(111766,111854), HIT]
+> Hit #4 :
+Starting Position: 118079 | Ending Position: 118179 | Length: 101    [Doesn't Exist on .gff, NOT hit]
+> Hit #5 :
+Starting Position: 138345 | Ending Position: 138419 | Length: 75     [Actual pos:(138344,138419), HIT]
+> Hit #6 :
+Starting Position: 154610 | Ending Position: 157697 | Length: 3088   [Actual pos:(154652, 157653), HIT?]
+> Hit #7 :
+Starting Position: 157782 | Ending Position: 159591 | Length: 1810   [Actual pos:(157847, 157919), NOT HIT]
+> Hit #8 :
+Starting Position: 186974 | Ending Position: 187067 | Length: 94     [Actual pos:(186978, 187066), HIT]
+> Hit #9 :
+Starting Position: 190831 | Ending Position: 190907 | Length: 77     [Actual pos:(190832, 190908), HIT]
+> Hit #10 :
+Starting Position: 215200 | Ending Position: 215296 | Length: 97     [Actual pos:(215210, 215297), HIT]
+> Hit #11 :
+Starting Position: 227705 | Ending Position: 227782 | Length: 78
+> Hit #12 :
+Starting Position: 291972 | Ending Position: 291997 | Length: 26
+> Hit #13 :
+Starting Position: 303990 | Ending Position: 304080 | Length: 91
+> Hit #14 :
+Starting Position: 358766 | Ending Position: 358942 | Length: 177
+> Hit #15 :
+Starting Position: 359974 | Ending Position: 360046 | Length: 73
+> Hit #16 :
+Starting Position: 402969 | Ending Position: 403057 | Length: 89
+> Hit #17 :
+Starting Position: 412582 | Ending Position: 412635 | Length: 54
+> Hit #18 :
+Starting Position: 552537 | Ending Position: 552862 | Length: 326
+> Hit #19 :
+Starting Position: 619161 | Ending Position: 619236 | Length: 76
+> Hit #20 :
+Starting Position: 637579 | Ending Position: 638153 | Length: 575
+> Hit #21 :
+Starting Position: 638334 | Ending Position: 640132 | Length: 1799
+> Hit #22 :
+Starting Position: 640217 | Ending Position: 643449 | Length: 3233
+> Hit #23 :
+Starting Position: 643500 | Ending Position: 643767 | Length: 268
+> Hit #24 :
+Starting Position: 763767 | Ending Position: 763845 | Length: 79
+> Hit #25 :
+Starting Position: 764022 | Ending Position: 764095 | Length: 74
+> Hit #26 :
+Starting Position: 774708 | Ending Position: 774788 | Length: 81
+> Hit #27 :
+Starting Position: 863476 | Ending Position: 864151 | Length: 676
+> Hit #28 :
+Starting Position: 873579 | Ending Position: 873778 | Length: 200
+> Hit #29 :
+Starting Position: 883675 | Ending Position: 883755 | Length: 81
+> Hit #30 :
+Starting Position: 951852 | Ending Position: 951968 | Length: 117
+> Hit #31 :
+Starting Position: 1038544 | Ending Position: 1038622 | Length: 79
+> Hit #32 :
+Starting Position: 1129124 | Ending Position: 1129194 | Length: 71
+> Hit #33 :
+Starting Position: 1150142 | Ending Position: 1150402 | Length: 261
+> Hit #34 :
+Starting Position: 1189943 | Ending Position: 1190054 | Length: 112
+> Hit #35 :
+Starting Position: 1313165 | Ending Position: 1313251 | Length: 87
+> Hit #36 :
+Starting Position: 1659451 | Ending Position: 1659520 | Length: 70
+--------------- < Iteration 10 End > ---------------
+
+Language Used : JAVA
+Runtime of 10 iterations (in milliseconds) : 14254   <-- slowed down by using BigDecimal for precision
+
+From the first 10 hits of my 10th iteration,
+I had some hits I had that were not on the .gff file, and some hits on the .gff file that I was missing.
+The precision of my hits seemed to get better as the iteration progressed.
